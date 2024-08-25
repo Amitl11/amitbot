@@ -1,0 +1,20 @@
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+
+def start(update, context):
+    update.message.reply_text('שלום!')
+
+def echo(update, context):
+    update.message.reply_text(update.message.text)
+
+def main():
+    updater = Updater("6998805989:AAGeXzmy8B1EZ2R44b9VNGA0dK9NgNVoWpw", use_context=True)
+    dp = updater.dispatcher
+
+    dp.add_handler(CommandHandler("start", start))
+    dp.add_handler(MessageHandler(Filters.text, echo))
+
+    updater.start_polling()
+    updater.idle()
+
+if __name__ == '__main__':
+    main()
